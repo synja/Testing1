@@ -5,14 +5,18 @@
 
 var myapp = angular.module('myapp',[]);
 
-myapp.controller('Ctrl1',function($scope) {
-        $scope.friends = ['Rod','Jane','Freddy'];
-});
+var controllers = {}
 
-myapp.controller('Ctrl2',function($scope) {
-        $scope.friends2 = [{name:'Rod', city:'Berlin'},
-                           {name:'Rob', city:'London'},
-                           {name:'Ron', city:'London'},
-                           {name:'Jane', city:'Paris'},
-                           {name:'Freddy', city:'Berlin'}];
-});
+controllers.Ctrl1 = function($scope) {
+  $scope.friends = ['Rod','Jane','Freddy'];
+};
+
+controllers.Ctrl2 = function($scope) {
+  $scope.friends2 = [{name:'Rod', city:'Berlin'},
+                     {name:'Rob', city:'London'},
+                     {name:'Ron', city:'London'},
+                     {name:'Jane', city:'Paris'},
+                     {name:'Freddy', city:'Berlin'}];
+};
+
+myapp.controller(controllers);
