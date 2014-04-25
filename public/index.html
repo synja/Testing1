@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-ng-app>
+<html data-ng-app="myapp">
   <head>
 	<title>angula.azurewebsites.net</title>	
   </head>
@@ -12,17 +12,72 @@
     <p>Allo {{input1}}</p>
     <hr></hr>
     
-    <!-- ng-Repeat -->
-    <p>simple data-ng-repeat</p>
-    <div ng-controller="Ctrl">
-    <!-- <div data-ng-init="friends=['Rod','Jane','Freddy']">   
-    -->
+    <!-- ng-repeat simple array-->  
+    <p>simple data-ng-repeat with simple array from Ctrl1 in test1.js</p>
+    <div data-ng-controller="Ctrl1">
       <ul>
         <li data-ng-repeat="name in friends">{{name}}</li>
       </ul>
     </div>
     <hr></hr>
     
+    <!-- ng-repeat array of objects --> 
+    <p>simple data-ng-repeat with array of objects from Ctrl2 in test1.js</p>
+    <div data-ng-controller="Ctrl2">
+      <ul>
+        <li data-ng-repeat="friend in friends2">
+          {{friend.name}} from {{friend.city}}
+        </li>
+      </ul>
+    </div>
+    <hr></hr>
+    
+    <!-- ng-repeat array of objects --> 
+    <!-- lowercase & uppercase filters on output-->
+    <p>simple data-ng-repeat with array of objects from Ctrl2 in test1.js</p>
+    <p>name to uppercase and city to lowercase</p>
+    <div data-ng-controller="Ctrl2">
+      <ul>
+        <li data-ng-repeat="friend in friends2">
+          {{friend.name | uppercase}} from {{friend.city | lowercase}}
+        </li>
+      </ul>
+    </div>
+    <hr></hr>
+    
+    <!-- ng-repeat array of objects -->  
+    <!-- with basic filter -->  
+    <p>simple data-ng-repeat with data from data-ng-controller</p>
+    <p>with added filter (filters on all content name and city</p>
+    <div data-ng-controller="Ctrl2">
+      <p>Filter the list</p>
+      <input type='text' data-ng-model='namefilter'/>
+      <ul>
+        <li data-ng-repeat="friend in friends2 | filter:namefilter">
+          {{friend.name}} from {{friend.city}}
+        </li>
+      </ul>
+    </div>
+    <hr></hr>
+    
+    <!-- ng-repeat array of objects -->  
+    <!-- with basic filter + ordering -->  
+    <p>simple data-ng-repeat with data from data-ng-controller</p>
+    <p>with added filter (filters on all content name and city)</p>
+    <p>with orderBy:'city'</p>
+    <div data-ng-controller="Ctrl2">
+      <p>Filter the list</p>
+      <input type='text' data-ng-model='namefilter'/>
+      <ul>
+        <li data-ng-repeat="friend in friends2 | filter:namefilter | orderBy:'city'">
+          {{friend.name}} from {{friend.city}}
+        </li>
+      </ul>
+    </div>
+    <hr></hr>
+    
+    
+       
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
     <script src="javascripts/test1.js"></script>
     
