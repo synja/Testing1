@@ -63,4 +63,22 @@ controllers.Ctrl2 = function($scope) {
                      {name:'Freddy', city:'Berlin'}];
 };
 
+controllers.Ctrl3 = function($scope,$http) {
+  $scope.getFromAPI = function() {
+    $http.get('https://api.github.com/users/angular')
+      .success(function(data, status, headers, config){
+        // success
+        console.log('success',status)
+        console.log(data)
+        $scope.mydata = data;
+      })
+      .error(function(data, status, headers, config){
+        // error
+        console.log('error!',status)
+        console.log(data)
+      })
+  }
+};
+
+
 myapp.controller(controllers);
