@@ -21,7 +21,11 @@ myapp.config(function($routeProvider) {
      controller:'Ctrl1',
      templateUrl:'partials/view2.html'                   
    })
-   .otherwise({redirectTo:'/'});                  
+   .otherwise({redirectTo:'/'});   
+   
+   //$locationProvider.html5Mode(true);
+   //$locationProvider.hashPrefix('!');
+                  
 });
 
 //=============================================
