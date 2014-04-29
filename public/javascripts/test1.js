@@ -9,8 +9,8 @@ var myapp = angular.module('myapp',['ngRoute']);
 //=============================================
 //============       config        ============
 //=============================================
-
-
+//
+//
 myapp.config(function($routeProvider) {
    $routeProvider
    .when('/p1',{
