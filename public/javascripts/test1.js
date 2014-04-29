@@ -4,7 +4,7 @@
 // update 2014 04 25 16:56 ['ngRoute'] 
 // myapp used with data-ng-app directive in html file
 
-var myapp = angular.module('myapp',['ngRoute']);
+var myapp = angular.module('myapp',['ngRoute','app.angularGit']);
 
 //=============================================
 //============       config        ============
@@ -65,7 +65,7 @@ controllers.Ctrl2 = function($scope) {
 
 controllers.Ctrl3 = function($scope,$http) {
   $scope.getFromAPI = function() {
-    $http.get('https://api.github.com/users/angular')
+    $http.get('https://api.github.com/users/synja')
       .success(function(data, status, headers, config){
         // success
         console.log('success',status)
@@ -79,6 +79,23 @@ controllers.Ctrl3 = function($scope,$http) {
       })
   }
 };
+
+controllers.Ctrl4 = function($scope,AngularGit) {
+  var params = {category: 'commits'}//, sha: '80e7a4558490f7ffd33d142844b9153a5ed00e86'}
+
+  // console.log(AngularGit.get(params))
+  console.log(AngularGit.query(params))
+};
+
+
+//=============================================
+//============       modules       ============
+//=============================================
+
+angular.module('app.angularGit', ['ngResource'])
+  .factory('AngularGit',function($resource) {
+    return $resource('https://api.github.com/repos/angular/angular.js/:category/:sha')
+  })
 
 
 myapp.controller(controllers);
