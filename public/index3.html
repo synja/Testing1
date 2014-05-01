@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+  <head>
+      <title>AngularJS: UI-Router Quick Start</title>
+      <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+  <body class="container">
+    <div class="navbar">
+      <div class="navbar-inner">
+        <a class="brand" href="#">Quick Start</a>
+        <ul class="nav">
+          <li><a ui-sref="route1">Route 1</a></li>
+          <li><a ui-sref="route2">Route 2</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="span12">
+        <div class="well" ui-view></div>        
+      </div>
+    </div>         
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.js"></script>
+    <script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
+    <script src="javascripts/test2.js"></script>
+
+    <!-- templates -->
+    <script type="text/ng-template" id="route1.html">
+      <h1>Route 1</h1>
+      <hr/>
+      <a ui-sref=".list">Show List</a>
+      <div ui-view></div>
+    </script>
+    <script type="text/ng-template" id="route1.list.html">
+      <h3>List of Route 1 Items</h3>
+      <ul>
+        <li ng-repeat="item in items">{{item}}</li>
+      </ul>
+    </script>
+    <script type="text/ng-template" id="route2.html">
+      <h1>Route 2</h1>
+      <hr/>
+      <a ui-sref=".list">Show List</a>
+      <div ui-view></div>
+    </script>
+    <script type="text/ng-template" id="route2.list.html">
+      <h3>List of Route 2 Things</h3>
+      <ul>
+        <li ng-repeat="thing in things">{{thing}}</li>
+      </ul>
+    </script>
+  </body>
+</html>

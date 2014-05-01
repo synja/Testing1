@@ -2,6 +2,7 @@
 // var name does not need to match module name
 // [] empty array of modules (dependencies)
 // update 2014 04 25 16:56 ['ngRoute'] 
+// update 2014 04 29 13:09 ['ngRoute','app.angularGit'] 
 // myapp used with data-ng-app directive in html file
 
 var myapp = angular.module('myapp',['ngRoute','app.angularGit']);
@@ -80,11 +81,35 @@ controllers.Ctrl3 = function($scope,$http) {
   }
 };
 
-controllers.Ctrl4 = function($scope,AngularGit) {
-  var params = {category: 'commits'}//, sha: '80e7a4558490f7ffd33d142844b9153a5ed00e86'}
+controllers.Ctrl3b = function($scope,$http) {
+  $scope.getFromAPI = function() {
+    $http.get('https://pybottle.azurewebsites.net/json1')
+      .success(function(data, status, headers, config){
+        // success
+        console.log('success',status)
+        console.log(data)
+        $scope.mydata = data;
+      })
+      .error(function(data, status, headers, config){
+        // error
+        console.log('error!',status)
+        console.log(data)
+        $scope.mydata = data;
+      })
+  }
+};
 
-  // console.log(AngularGit.get(params))
-  console.log(AngularGit.query(params))
+
+//module AngularGit injected
+controllers.Ctrl4 = function($scope,AngularGit) {
+  
+  //individual commit
+  var params = {category: 'commits', sha: '92e8289c12e32a9eccaee204ff5f4683205fe1cf'}
+  console.log(AngularGit.get(params));
+
+  //array of commits
+  //var params = {category: 'commits'}
+  //console.log(AngularGit.query(params))
 };
 
 
@@ -94,7 +119,7 @@ controllers.Ctrl4 = function($scope,AngularGit) {
 
 angular.module('app.angularGit', ['ngResource'])
   .factory('AngularGit',function($resource) {
-    return $resource('https://api.github.com/repos/angular/angular.js/:category/:sha')
+    return $resource('https://api.github.com/repos/angular/angular.js/:category/:sha/')
   })
 
 
